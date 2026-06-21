@@ -1,22 +1,28 @@
 package bibliotheque.model;
 
 import java.time.LocalDate;
+import java.util.List;
 
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 
+@Entity
+@Table( name = "emprunts" )
 public class Emprunt {
 	@Id
 	@GeneratedValue( strategy = jakarta.persistence.GenerationType.IDENTITY )
 	private Long id;
 
-	@OneToMany( fetch = jakarta.persistence.FetchType.LAZY )
+	@ManyToOne( fetch = jakarta.persistence.FetchType.LAZY )
 	@JoinColumn( name = "livre_id", nullable = false )
 	private Livre livre;
 
-	@OneToMany( fetch = jakarta.persistence.FetchType.LAZY )
+	@ManyToOne( fetch = jakarta.persistence.FetchType.LAZY )
 	@JoinColumn( name = "utilisateur_id", nullable = false )
 	private Utilisateur utilisateur;
 
